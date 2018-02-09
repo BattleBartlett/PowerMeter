@@ -10,7 +10,8 @@ if [ -z "$METERID" ]; then
   sleep 10 #Let rtl_tcp startup and open a port
 
   #rtlamr -msgtype=r900
-  rtlamr -msgtype=idm -msgtype=scm+
+  rtlamr -msgtype=idm 
+  #rtlamr -msgtype=scm+
   exit 0
 fi
 
