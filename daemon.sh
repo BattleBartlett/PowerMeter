@@ -39,7 +39,7 @@ while true; do
  # json=$(rtlamr -msgtype=scm -filterid=$METERID -single=true -format=json)
   echo "Meter info: $json"
 
-  consumption=$(echo $json | python -c "import json,sys;obj=json.load(sys.stdin);print float(obj[\"Message\"][\"LastConsumptionCount\"])/$UNIT_DIVISOR")
+  consumption=$(echo $json | python -c "import json,sys;obj=json.load(sys.stdin);print float(obj[\"Message\"][\"Consumption\"])/$UNIT_DIVISOR")
   echo "Current consumption: $consumption $UNIT"
 
   # Replace with your custom logging code
