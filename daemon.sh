@@ -16,7 +16,7 @@ if [ -z "$METERID" ]; then
 fi
 
 # Setup for kWh
-UNIT_DIVISOR=10000
+UNIT_DIVISOR=100
 UNIT="kWh" # Hundred cubic feet
 #if [ ! -z "$METRIC" ]; then
 #  echo "Setting meter to metric readings"
