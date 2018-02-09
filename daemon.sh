@@ -35,7 +35,8 @@ while true; do
   sleep 10 #Let rtl_tcp startup and open a port
 
  # json=$(rtlamr -msgtype=r900 -filterid=$METERID -single=true -format=json)
-  json=$(rtlamr -msgtype=idm -msgtype=scm+ -filterid=$METERID -single=true -format=json)
+  json=$(rtlamr -msgtype=idm -filterid=$METERID -single=true -format=json)
+ #json=$(rtlamr -msgtype=scm+ -filterid=$METERID -single=true -format=json)
   echo "Meter info: $json"
 
   consumption=$(echo $json | python -c "import json,sys;obj=json.load(sys.stdin);print float(obj[\"Message\"][\"Consumption\"])/$UNIT_DIVISOR")
