@@ -11,7 +11,7 @@ if [ -z "$METERID" ]; then
 
   #rtlamr -msgtype=r900
   #rtlamr -msgtype=idm 
-  rtlamr -msgtype=scm
+  rtlamr -msgtype=scm -format=json
   exit 0
 fi
 
