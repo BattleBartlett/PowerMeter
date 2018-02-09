@@ -13,14 +13,14 @@ if [ -z "$METERID" ]; then
   exit 0
 fi
 
-# Setup for Metric/CCF
+# Setup for kWh
 UNIT_DIVISOR=10000
-UNIT="CCF" # Hundred cubic feet
-if [ ! -z "$METRIC" ]; then
-  echo "Setting meter to metric readings"
-  UNIT_DIVISOR=1000
-  UNIT="Cubic Meters"
-fi
+UNIT="kWh" # Hundred cubic feet
+#if [ ! -z "$METRIC" ]; then
+#  echo "Setting meter to metric readings"
+#  UNIT_DIVISOR=1000
+#  UNIT="Cubic Meters"
+#fi
 
 # Kill this script (and restart the container) if we haven't seen an update in 30 minutes
 # Nasty issue probably related to a memory leak, but this works really well, so not changing it
@@ -32,7 +32,8 @@ while true; do
   rtl_tcp_pid=$! # Save the pid for murder later
   sleep 10 #Let rtl_tcp startup and open a port
 
-  json=$(rtlamr -msgtype=r900 -filterid=$METERID -single=true -format=json)
+ # json=$(rtlamr -msgtype=r900 -filterid=$METERID -single=true -format=json)
+  json=$(rtlamr -msgtype=idm -msgtype=scm+ -filterid=$METERID -single=true -format=json)
   echo "Meter info: $json"
 
   consumption=$(echo $json | python -c "import json,sys;obj=json.load(sys.stdin);print float(obj[\"Message\"][\"Consumption\"])/$UNIT_DIVISOR")
